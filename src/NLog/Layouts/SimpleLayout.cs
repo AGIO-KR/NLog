@@ -241,16 +241,18 @@ namespace NLog.Layouts
         }
 
         /// <inheritdoc />
-        public override object GetRawValue(LogEventInfo logEvent)
+        public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
-
             if (Renderers.Count == 1 && Renderers[0] is IRawValue rawValueLayoutRenderer)
             {
-                return rawValueLayoutRenderer.GetRawValue(logEvent);
+                rawValue =  rawValueLayoutRenderer.GetRawValue(logEvent);
+                return true;
             }
 
-            return null;
+            rawValue = null;
+            return false;
         }
+
 
         /// <summary>
         /// Initializes the layout.

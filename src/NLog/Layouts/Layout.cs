@@ -49,7 +49,7 @@ namespace NLog.Layouts
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces", Justification = "Few people will see this conflict.")]
     [NLogConfigurationItem]
-    public abstract class Layout : ISupportsInitialize, IRenderable, IRawValue
+    public abstract class Layout : ISupportsInitialize, IRenderable
     {
         /// <summary>
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
@@ -381,10 +381,16 @@ namespace NLog.Layouts
             return base.ToString();
         }
 
-        /// <inheritdoc />
-        public virtual object GetRawValue(LogEventInfo logEvent)
+        /// <summary>
+        /// Try get value
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="rawValue"></param>
+        /// <returns>not implementing <see cref="IRawValue"/></returns>
+        public virtual bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
-            return null;
+            rawValue = null;
+            return false;
         }
     }
 }
