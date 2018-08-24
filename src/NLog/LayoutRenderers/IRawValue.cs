@@ -9,7 +9,7 @@
         /// Get the raw value
         /// </summary>
         /// <param name="logEvent"></param>
-        /// <returns></returns>
+        /// <returns>null if not possible or unknown</returns>
         object GetRawValue(LogEventInfo logEvent);
 
     }

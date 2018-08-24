@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.LayoutRenderers;
+
 namespace NLog.Layouts
 {
     using System;
@@ -47,7 +49,7 @@ namespace NLog.Layouts
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces", Justification = "Few people will see this conflict.")]
     [NLogConfigurationItem]
-    public abstract class Layout : ISupportsInitialize, IRenderable
+    public abstract class Layout : ISupportsInitialize, IRenderable, IRawValue
     {
         /// <summary>
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
@@ -377,6 +379,12 @@ namespace NLog.Layouts
                 return string.Concat(GetType().Name, "=", string.Join("|", nestedNames));
             }
             return base.ToString();
+        }
+
+        /// <inheritdoc />
+        public virtual object GetRawValue(LogEventInfo logEvent)
+        {
+            return null;
         }
     }
 }
