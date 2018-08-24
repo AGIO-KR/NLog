@@ -127,12 +127,6 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        /// <inheritdoc />
-        public object GetRawValue(LogEventInfo logEventInfo)
-        {
-            return GetValue();
-        }
-
         private static WindowsIdentity GetValue()
         {
             WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();

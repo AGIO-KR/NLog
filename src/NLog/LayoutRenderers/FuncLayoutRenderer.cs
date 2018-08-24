@@ -88,7 +88,7 @@ namespace NLog.LayoutRenderers
         #endregion
 
         /// <inheritdoc />
-        public object GetRawValue(LogEventInfo logEvent)
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
         {
             return GetValue(logEvent);
         }
