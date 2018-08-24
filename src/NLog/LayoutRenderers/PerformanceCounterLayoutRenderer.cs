@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     /// The performance counter.
     /// </summary>
     [LayoutRenderer("performancecounter")]
-    public class PerformanceCounterLayoutRenderer : LayoutRenderer
+    public class PerformanceCounterLayoutRenderer : LayoutRenderer, IRawValue
     {
         private PerformanceCounter perfCounter;
 
@@ -112,7 +112,18 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var formatProvider = GetFormatProvider(logEvent);
-            builder.Append(perfCounter.NextValue().ToString(formatProvider));
+            builder.Append(GetValue().ToString(formatProvider));
+        }
+
+        /// <inheritdoc />
+        public object GetRawValue(LogEventInfo logEventInfo)
+        {
+            return GetValue();
+        }
+
+        private float GetValue()
+        {
+            return perfCounter.NextValue();
         }
     }
 }

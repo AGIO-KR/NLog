@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("ticks")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class TicksLayoutRenderer : LayoutRenderer
+    public class TicksLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Renders the ticks value of current time and appends it to the specified <see cref="StringBuilder" />.
@@ -53,7 +53,18 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture expected here
-            builder.Append(logEvent.TimeStamp.Ticks.ToString(CultureInfo.InvariantCulture));
+            builder.Append(GetValue(logEvent).ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <inheritdoc />
+        public object GetRawValue(LogEventInfo logEventInfo)
+        {
+            return GetValue(logEventInfo);
+        }
+
+        private static long GetValue(LogEventInfo logEvent)
+        {
+            return logEvent.TimeStamp.Ticks;
         }
     }
 }

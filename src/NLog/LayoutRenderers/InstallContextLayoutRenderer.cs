@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("install-context")]
     [ThreadSafe]
-    public class InstallContextLayoutRenderer : LayoutRenderer
+    public class InstallContextLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets the name of the parameter.
@@ -60,13 +60,23 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            object value;
-
-            if (logEvent.Properties.TryGetValue(Parameter, out value))
+            var value = GetValue(logEvent);
+            if (value != null)
             {
                 var formatProvider = GetFormatProvider(logEvent);
                 builder.Append(Convert.ToString(value, formatProvider));
             }
+        }
+
+        private object GetValue(LogEventInfo logEvent)
+        {
+            return !logEvent.Properties.TryGetValue(Parameter, out var value) ? null : value;
+        }
+
+        /// <inheritdoc />
+        public object GetRawValue(LogEventInfo logEventInfo)
+        {
+            return GetValue(logEventInfo);
         }
     }
 }
