@@ -68,9 +68,9 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        public object GetRawValue(LogEventInfo logEventInfo)
+        public object GetRawValue(LogEventInfo logEvent)
         {
-            return GetValue(logEventInfo);
+            return GetValue(logEvent);
         }
         
         /// <summary>

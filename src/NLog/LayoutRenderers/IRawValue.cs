@@ -8,9 +8,9 @@
         /// <summary>
         /// Get the raw value
         /// </summary>
-        /// <param name="logEventInfo"></param>
+        /// <param name="logEvent"></param>
         /// <returns></returns>
-        object GetRawValue(LogEventInfo logEventInfo);
+        object GetRawValue(LogEventInfo logEvent);
 
     }
 }

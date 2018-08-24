@@ -140,7 +140,7 @@ namespace NLog.LayoutRenderers
         /// Get the raw value.
         /// </summary>
         /// <returns></returns>
-        object IRawValue.GetRawValue(LogEventInfo logEventInfo) => GetDate(logEventInfo);
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetDate(logEvent);
 
         private static bool IsLowTimeResolutionLayout(string dateTimeFormat)
         {

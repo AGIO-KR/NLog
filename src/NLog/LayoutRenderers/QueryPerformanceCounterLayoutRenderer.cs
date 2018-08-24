@@ -172,7 +172,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        public object GetRawValue(LogEventInfo logEventInfo)
+        public object GetRawValue(LogEventInfo logEvent)
         {
             var value = GetValue();
             if (value.HasValue && Seconds)

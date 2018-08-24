@@ -74,9 +74,9 @@ namespace NLog.LayoutRenderers
 
 
         /// <inheritdoc />
-        public object GetRawValue(LogEventInfo logEventInfo)
+        public object GetRawValue(LogEventInfo logEvent)
         {
-            return GetLineNumber(logEventInfo);
+            return GetLineNumber(logEvent);
         }
 
         private int? GetLineNumber(LogEventInfo logEvent)

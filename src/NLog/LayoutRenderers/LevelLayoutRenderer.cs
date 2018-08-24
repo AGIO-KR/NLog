@@ -58,7 +58,7 @@ namespace NLog.LayoutRenderers
         /// Get the raw value.
         /// </summary>
         /// <returns></returns>
-        object IRawValue.GetRawValue(LogEventInfo logEventInfo) => GetValue(logEventInfo);
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
 
         /// <summary>
         /// Renders the current log level and appends it to the specified <see cref="StringBuilder" />.
