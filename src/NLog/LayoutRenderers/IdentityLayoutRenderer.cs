@@ -40,6 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Security.Principal;
     using System.Text;
     using NLog.Config;
+	using NLog.Internal;
 
     /// <summary>
     /// Thread identity information (name and authentication information).

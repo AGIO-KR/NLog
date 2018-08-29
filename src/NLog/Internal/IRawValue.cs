@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+namespace NLog.Internal
 {
     /// <summary>
     /// Get the Raw, unformatted and unstrinyfied, value
